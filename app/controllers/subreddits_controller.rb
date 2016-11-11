@@ -9,6 +9,7 @@ class SubredditsController < ApplicationController
 
   def create
     @subreddit = Subreddit.new(subreddit_params)
+    @subreddit.save
     redirect_to subreddits_index_path
   end
 
