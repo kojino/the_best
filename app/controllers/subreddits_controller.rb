@@ -3,6 +3,10 @@ class SubredditsController < ApplicationController
     @subreddits = Subreddit.all
   end
 
+  def show
+    @subreddit = Subreddit.find(params[:id])
+  end
+
   def new
     @subreddit = Subreddit.new
   end
@@ -10,8 +14,25 @@ class SubredditsController < ApplicationController
   def create
     @subreddit = Subreddit.new(subreddit_params)
     @subreddit.save
-    redirect_to subreddits_index_path
+    flash[:success] = "Subreddit created"
+    redirect_to subreddits_path
   end
+
+  def edit
+    @subreddit = Subreddit.find(params[:id])
+  end
+
+  def update
+    @subreddit = Subreddit.find(params[:id])
+    if @subreddit.update_attributes(subreddit_params)
+      render 'show'
+      flash[:success] = "Subreddit updated"
+    else
+      render 'edit'
+      flash[:error] = "Subreddit failed to update"
+    end
+  end
+
 
   private
 

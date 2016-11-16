@@ -1,0 +1,9 @@
+<h1>CREATE A POST</h1>
+
+<%= form_for [@subreddit, @post] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <%= f.submit %>
+<% end %>

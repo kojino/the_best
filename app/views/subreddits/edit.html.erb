@@ -1,4 +1,9 @@
-<h1>CREATE A SUBREDDIT</h1>
+<h1>SubrEdit</h1>
+
+<h1>
+  <strong>Current Subreddit Title:</strong>
+  <%= @subreddit.title %>
+</h1>
 
 <%= form_for(@subreddit) do |f| %>
   <%= f.label :title %>

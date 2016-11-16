@@ -5,19 +5,24 @@ class SubredditTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
+    # @user = User.create(username: 'kojinOshibaAaAaAa101')
+    # @subreddit = Subreddit.create(title: 'new number who dis', user: @user)
+    # @post = Post.create(title: 'Dis kojinOshibaAaAaAa101', body: 'test body', user: @user, subreddit: @subreddit)
+    # @comment = Comment.create(content: 'comment content', user: @user, post: @post)
     @user = User.create(username: 'kojinOshibaAaAaAa101')
-    @subreddit = Subreddit.create(title: 'new number who dis', user: @user)
-    @post = Post.create(title: 'Dis kojinOshibaAaAaAa101', body: 'test body', user: @user, subreddit: @subreddit)
-    @comment = Comment.create(content: 'comment content', user: @user, post: @post)
+    @subreddit = Subreddit.create(title: 'new number who dis')
+    @post = Post.create(title: 'Dis kojinOshibaAaAaAa101', body: 'test body', subreddit: @subreddit)
+    @comment = Comment.create(content: 'comment content', post: @post)
+
   end
 
   test 'subreddit has title' do
     assert_equal @subreddit.title, 'new number who dis'
   end
 
-  test "user id should be present" do
-    assert_equal @subreddit.user, @user
-  end
+  # test "user id should be present" do
+  #   assert_equal @subreddit.user, @user
+  # end
 
   test 'subreddit can contain posts' do
     assert_equal @subreddit.posts.count, 1

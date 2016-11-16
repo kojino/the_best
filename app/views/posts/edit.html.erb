@@ -1,0 +1,19 @@
+<h1>Edit Post</h1>
+
+<h2>
+  <strong>Current Post Title:</strong>
+  <%= @post.title %>
+</h2>
+
+<p>
+  <strong>Current Post Body:</strong>
+  <%= @post.body %>
+</p>
+
+<%= form_for [@subreddit, @post] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <%= f.submit %>
+<% end %>

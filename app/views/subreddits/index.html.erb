@@ -1,5 +1,9 @@
 <h1>Subreddit Index</h1>
-<%= link_to "New subreddit", new_subreddit_path %>
+<div>
+  <%= link_to "Create a subreddit", new_subreddit_path %>
+</div>
 <% @subreddits.each do |subreddit| %>
-  <p><%= subreddit.title %></p>
+  <h2><%= link_to subreddit.title, subreddit %></h2>
+  <p><%= link_to "Edit subreddit", edit_subreddit_path(subreddit) %></p>
+  <br>
 <% end %>

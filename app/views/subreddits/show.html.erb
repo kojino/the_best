@@ -1,0 +1,14 @@
+<h1>
+  <strong>Subreddit:</strong>
+  <%= @subreddit.title %>
+</h1>
+
+<% @subreddit.posts.each do |post| %>
+  <h2><%= post.title %></h2>
+  <p><%= post.body %></p>
+  <p><%= link_to "Edit post", edit_subreddit_post_path(@subreddit, post) %></p>
+<% end %>
+
+<%= link_to "Create a Post", new_subreddit_post_path(@subreddit) %>
+
+<%= link_to "Return to Index", subreddits_index_path %>
