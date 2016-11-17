@@ -25,14 +25,14 @@ class SubredditsController < ApplicationController
   def update
     @subreddit = Subreddit.find(params[:id])
     if @subreddit.update_attributes(subreddit_params)
-      render 'show'
+      redirect_to @subreddit
       flash[:success] = "Subreddit updated"
     else
+      # no test exists for failed update
       render 'edit'
       flash[:error] = "Subreddit failed to update"
     end
   end
-
 
   private
 

@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @subreddit = Subreddit.find(params[:subreddit_id])
     @post = Post.find(params[:id])
     if @post.update_attributes(post_params)
-      redirect_to(@subreddit)
+      redirect_to @subreddit
       flash[:success] = "Post updated"
     else
       render 'edit'

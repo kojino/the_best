@@ -5,5 +5,6 @@
 <% @subreddits.each do |subreddit| %>
   <h2><%= link_to subreddit.title, subreddit %></h2>
   <p><%= link_to "Edit subreddit", edit_subreddit_path(subreddit) %></p>
+  <!-- <p><%= link_to "Destory subreddit", subreddits_path(subreddit), method: :delete, data: { confirm: 'Are you sure?' } %></p> -->
   <br>
 <% end %>
