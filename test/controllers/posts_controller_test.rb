@@ -29,7 +29,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
 
-  test 'should update subreddit' do
+  test 'should update post' do
     patch subreddit_post_url(@subreddit, @post), params: { post: { title: 'updated', body: 'updated' } }
 
     # take user to 'show' subreddit after editing one
