@@ -4,7 +4,8 @@
 </h1>
 
 <% @subreddit.posts.each do |post| %>
-  <h2><%= post.title %></h2>
+  <!-- <h2><%= post.title %></h2> -->
+  <h2><%= link_to post.title, post_path(post) %></h2>
   <p><%= post.body %></p>
   <p><%= link_to "Edit post", edit_subreddit_post_path(@subreddit, post) %></p>
 <% end %>

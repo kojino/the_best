@@ -1,0 +1,12 @@
+<h1>Edit Comment</h1>
+
+<h2>
+  <strong>Current Comment Content:</strong>
+  <%= @comment.content %>
+</h2>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.submit %>
+<% end %>

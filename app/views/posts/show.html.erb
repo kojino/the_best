@@ -1,0 +1,15 @@
+<h1>
+  <strong>Post:</strong>
+  <%= @post.title %>
+</h1>
+
+<%= link_to "Create a Comment", new_post_comment_path(@post) %>
+
+<% @post.comments.each do |comment| %>
+  <h3><%= comment.content %></h3>
+  <p><%= link_to "Edit comment", edit_post_comment_path(@post, comment) %></p>
+<% end %>
+
+<br>
+
+<%= link_to "Return to Subreddit", subreddit_path(@post.subreddit) %>
