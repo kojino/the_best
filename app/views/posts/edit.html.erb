@@ -1,19 +1,23 @@
-<h1>Edit Post</h1>
+<div class="container">
+  <h1>REdit Post</h1>
 
-<h2>
-  <strong>Current Post Title:</strong>
-  <%= @post.title %>
-</h2>
+  <div class="row">
+    <h3 class="three columns">Current Title</h3>
+    <h3 class="one column"> | </h3>
+    <h5><%= @post.title %></h5>
+  </div>
 
-<p>
-  <strong>Current Post Body:</strong>
-  <%= @post.body %>
-</p>
+  <div class="row">
+    <h3 class="three columns">Current Body</h3>
+    <h3 class="one column"> | </h3>
+    <p><%= @post.body %></p>
+  </div>
 
-<%= form_for [@subreddit, @post] do |f| %>
+  <%= form_for [@subreddit, @post] do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :class => 'u-full-width' %>
   <%= f.label :body %>
-  <%= f.text_field :body %>
-  <%= f.submit %>
-<% end %>
+  <%= f.text_field :body, :class => 'u-full-width' %>
+  <%= f.submit 'Update', :class => 'button-primary'%>
+  <% end %>
+</div>

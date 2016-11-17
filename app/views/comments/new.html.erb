@@ -1,7 +1,9 @@
-<h1>CREATE A COMMENT</h1>
+<div class="container">
+  <h1>CREATE A COMMENT</h1>
 
-<%= form_for [@post, @comment] do |f| %>
+  <%= form_for [@post, @comment] do |f| %>
   <%= f.label :content %>
-  <%= f.text_field :content %>
-  <%= f.submit %>
-<% end %>
+  <%= f.text_field :content, :class => 'u-full-width' %>
+  <%= f.submit 'Submit', :class => 'button-primary' %>
+  <% end %>
+</div>

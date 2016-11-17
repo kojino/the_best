@@ -15,6 +15,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # Use BetterErrors for better errors
 gem 'better_errors'
+# Use Skeleton framework for front-end
+gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

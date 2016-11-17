@@ -1,12 +1,14 @@
-<h1>Edit Comment</h1>
+<div class="container">
+  <h1>REdit Comment</h1>
 
-<h2>
-  <strong>Current Comment Content:</strong>
-  <%= @comment.content %>
-</h2>
+  <h3>
+    <strong>Current Comment |</strong>
+  </h3>
+  <p><%= @comment.content %></p>
 
-<%= form_for [@post, @comment] do |f| %>
+  <%= form_for [@post, @comment] do |f| %>
   <%= f.label :content %>
-  <%= f.text_field :content %>
-  <%= f.submit %>
-<% end %>
+  <%= f.text_field :content, :class => 'u-full-width' %>
+  <%= f.submit 'Submit', :class => 'button-primary' %>
+  <% end %>
+</div>

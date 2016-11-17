@@ -1,10 +1,21 @@
-<h1>Subreddit Index</h1>
-<div>
-  <%= link_to "Create a subreddit", new_subreddit_path %>
+<div class="container">
+  <div class="row">
+    <h1 class="five columns">Subreddit Index</h1>
+    <%= link_to "Create a subreddit", new_subreddit_path, :class => 'button button-primary' %>
+  </div>
+
+  <!-- <div class="row">
+    <div class="twelve columns">
+
+    </div>
+  </div> -->
+
+  <% @subreddits.each do |subreddit| %>
+  <div class="row">
+    <h3 class="five columns"><%= link_to subreddit.title, subreddit %></h3>
+    <%= link_to "Edit subreddit", edit_subreddit_path(subreddit), :class => 'button' %>
+    <!-- <p><%= link_to "Destory subreddit", subreddits_path(subreddit), method: :delete, data: { confirm: 'Are you sure?' } %></p> -->
+    <br>
+  </div>
+  <% end %>
 </div>
-<% @subreddits.each do |subreddit| %>
-  <h2><%= link_to subreddit.title, subreddit %></h2>
-  <p><%= link_to "Edit subreddit", edit_subreddit_path(subreddit) %></p>
-  <!-- <p><%= link_to "Destory subreddit", subreddits_path(subreddit), method: :delete, data: { confirm: 'Are you sure?' } %></p> -->
-  <br>
-<% end %>

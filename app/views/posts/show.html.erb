@@ -1,15 +1,21 @@
-<h1>
-  <strong>Post:</strong>
-  <%= @post.title %>
-</h1>
+<div class="container">
+  <h1>Post |</h1>
 
-<%= link_to "Create a Comment", new_post_comment_path(@post) %>
+  <h3><%= @post.title %></h3>
 
-<% @post.comments.each do |comment| %>
-  <h3><%= comment.content %></h3>
-  <p><%= link_to "Edit comment", edit_post_comment_path(@post, comment) %></p>
-<% end %>
+  <div class="row">
+    <h5 class="two columns">Comments |</h5>
+    <%= link_to "Create a Comment", new_post_comment_path(@post), :class => 'button' %>
+  </div>
 
-<br>
+  <% @post.comments.each do |comment| %>
+  <div class="row">
+    <h6 class="ten columns"><%= comment.content %></h6>
+    <p><%= link_to "Edit comment", edit_post_comment_path(@post, comment), :class => 'button' %></p>
+  </div>
+  <% end %>
 
-<%= link_to "Return to Subreddit", subreddit_path(@post.subreddit) %>
+  <br>
+
+  <%= link_to "Return to Subreddit", subreddit_path(@post.subreddit), :class => 'button' %>
+</div>

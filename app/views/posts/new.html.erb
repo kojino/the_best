@@ -1,9 +1,11 @@
-<h1>CREATE A POST</h1>
+<div class="container">
+  <h1>CREATE A POST</h1>
 
-<%= form_for [@subreddit, @post] do |f| %>
+  <%= form_for [@subreddit, @post] do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :class => 'u-full-width' %>
   <%= f.label :body %>
-  <%= f.text_field :body %>
-  <%= f.submit %>
-<% end %>
+  <%= f.text_field :body, :class => 'u-full-width' %>
+  <%= f.submit 'Submit', :class => 'button-primary' %>
+  <% end %>
+</div>

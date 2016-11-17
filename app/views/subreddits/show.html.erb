@@ -1,17 +1,23 @@
-<h1>
-  <strong>Subreddit:</strong>
-  <%= @subreddit.title %>
-</h1>
+<div class="container">
+  <div class="row">
+    <h1 class="eight columns">
+      <strong>Subreddit | </strong>
+      <%= @subreddit.title %>
+    </h1>
 
-<% @subreddit.posts.each do |post| %>
+    <%= link_to "Create a Post", new_subreddit_post_path(@subreddit), :class => 'button button-primary' %>
+  </div>
+
+  <% @subreddit.posts.each do |post| %>
   <!-- <h2><%= post.title %></h2> -->
-  <h2><%= link_to post.title, post_path(post) %></h2>
-  <p><%= post.body %></p>
-  <p><%= link_to "Edit post", edit_subreddit_post_path(@subreddit, post) %></p>
-<% end %>
+  <div class="row">
+    <h3 class="eight columns"><%= link_to post.title, post_path(post) %></h3>
+    <%= link_to "Edit post", edit_subreddit_post_path(@subreddit, post), :class => 'button' %>
+    <p class="twelve columns"><%= post.body %></p>
+  </div>
+  <% end %>
 
-<%= link_to "Create a Post", new_subreddit_post_path(@subreddit) %>
+  <br>
 
-<br>
-
-<%= link_to "Return to Index", subreddits_index_path %>
+  <%= link_to "All Subreddits", subreddits_path, :class => 'button' %>
+</div>

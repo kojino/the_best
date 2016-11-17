@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'subreddits/index'
-
   resources :subreddits, only: [:index, :new, :create, :show, :edit, :update] do
     resources :posts, only: [:new, :create, :edit, :update]
   end
