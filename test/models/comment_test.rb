@@ -5,14 +5,9 @@ class CommentTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-      # @user = User.create(username: 'kojinOshibaAaAaAa101')
-      # @post = Post.create(title: 'Dis kojinOshibaAaAaAa101', body: 'test body', user: @user)
-      # @comment = Comment.create(content: 'comment content', user: @user, post: @post)
       @user = User.create(username: 'kojinOshibaAaAaAa101')
-      @subreddit = Subreddit.create(title: 'new number who dis')
-      @post = Post.create(title: 'Dis kojinOshibaAaAaAa101', body: 'test body', subreddit: @subreddit)
-      @comment = Comment.create(content: 'comment content', post: @post)
-
+      @post = Post.create(title: 'Dis kojinOshibaAaAaAa101', body: 'test body', user: @user)
+      @comment = Comment.create(content: 'comment content', user: @user, post: @post)
   end
 
   test 'comment has content' do

@@ -8,9 +8,13 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
-    @comment.save
-    flash[:success] = "Comment created"
-    redirect_to post_path(@post)
+    if @comment.save
+      flash[:success] = "Comment created"
+      redirect_to post_path(@post)
+    else
+      flash[:success] = "Comment failed to be created"
+      redirect_to new_post_comment_path(@post, @comment
+)    end
   end
 
   def edit
@@ -28,6 +32,15 @@ class CommentsController < ApplicationController
       render 'edit'
       flash[:error] = "Comment failed to update"
     end
+  end
+
+  def destroy
+      @post = Post.find(params[:post_id])
+      @comment = Comment.find(params[:id])
+      if @comment.destroy
+        flash[:success] = "Comment deleted!"
+        redirect_to @post
+      end
   end
 
   private

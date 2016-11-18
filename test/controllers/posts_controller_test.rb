@@ -6,13 +6,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   # end
 
   def setup
-    @subreddit = Subreddit.create(title: 'Subreddit title')
-    @post = Post.create(title: 'Post title', body: 'Post body', subreddit: @subreddit)
+    @user = User.create(username: 'Professor Braus')
+    @subreddit = Subreddit.create(title: 'Subreddit title', user: @user)
+    @post = Post.create(title: 'Post title', body: 'Post body', subreddit: @subreddit, user: @user)
+    @comment1 = Comment.create(content: 'Comment content1', post: @post, user: @user)
+    @comment2 = Comment.create(content: 'Comment content2', post: @post, user: @user)
   end
 
   test "should create post" do
     assert_difference('Post.count') do
-      post subreddit_posts_url @subreddit, params: { post: { title: 'created', body: 'created', subreddit_id: @subreddit } }
+      post subreddit_posts_url @subreddit, params: { post: { title: 'created', body: 'created', subreddit: @subreddit } }
     end
 
     # take user to 'index' of subreddits after creating one
@@ -40,5 +43,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal 'updated', @post.title
     assert_equal 'updated', @post.body
+  end
+
+  test 'should delete post' do
+    assert_difference('Post.count', -1) do
+      assert_difference('Comment.count', -2) do
+        delete subreddit_post_url(@subreddit, @post)
+      end
+    end
   end
 end

@@ -35,6 +35,14 @@ class SubredditsController < ApplicationController
     end
   end
 
+  def destroy
+      @subreddit = Subreddit.find(params[:id])
+      if @subreddit.destroy
+        flash[:success] = "Subreddit deleted!"
+        redirect_to subreddits_path
+      end
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

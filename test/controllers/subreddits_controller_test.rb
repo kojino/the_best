@@ -3,7 +3,11 @@ require 'test_helper'
 class SubredditsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
-    @subreddit = Subreddit.create(title: 'Subreddit title')
+    @user = User.create(username: 'Professor Braus')
+    @subreddit = Subreddit.create(title: 'Subreddit title', user: @user)
+    @post = Post.create(title: 'Post title', body: 'Post body', subreddit: @subreddit, user: @user)
+    @comment1 = Comment.create(content: 'Comment content1', post: @post, user: @user)
+    @comment2 = Comment.create(content: 'Comment content2', post: @post, user: @user)
   end
 
   test "the truth" do
@@ -48,5 +52,15 @@ class SubredditsControllerTest < ActionDispatch::IntegrationTest
     @subreddit.reload
 
     assert_equal 'updated', @subreddit.title
+  end
+
+  test 'should delete subreddit' do
+    assert_difference('Subreddit.count', -1) do
+      assert_difference('Post.count', -2) do
+        assert_difference('Comment.count', -2) do
+          delete subreddit_url(@subreddit)
+        end
+      end
+    end
   end
 end

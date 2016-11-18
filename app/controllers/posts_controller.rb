@@ -34,6 +34,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @subreddit = Subreddit.find(params[:subreddit_id])
+    @post = Post.find(params[:id])
+    if @post.destroy
+      flash[:success] = "Post deleted!"
+      redirect_to @subreddit
+    end
+  end
+
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params

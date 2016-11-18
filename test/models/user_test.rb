@@ -5,14 +5,10 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-      # @user = User.create(username: 'kojin')
-      # @subreddit = Subreddit.create(title: 'new number who dis', user: @user)
-      # @post = Post.create(title: 'Dis kojin', body: 'Post body text', user: @user, subreddit: @subreddit)
-      # @comment = Comment.create(content: 'comment content', user: @user, post: @post)
-      @user = User.create(username: 'kojinOshibaAaAaAa101')
-      @subreddit = Subreddit.create(title: 'new number who dis')
-      @post = Post.create(title: 'Dis kojinOshibaAaAaAa101', body: 'test body', subreddit: @subreddit)
-      @comment = Comment.create(content: 'comment content', post: @post)
+      @user = User.create(username: 'kojin')
+      @subreddit = Subreddit.create(title: 'new number who dis', user: @user)
+      @post = Post.create(title: 'Dis kojin', body: 'Post body text', user: @user, subreddit: @subreddit)
+      @comment = Comment.create(content: 'comment content', user: @user, post: @post)
   end
 
   # test 'user can create subreddit' do
@@ -46,7 +42,16 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test 'user can have subreddits' do
+    assert_equal @user.subreddits.count, 1
+  end
 
+  test 'user can have posts' do
+    assert_equal @user.posts.count, 1
+  end
 
+  test 'user can have comments' do
+    assert_equal @user.comments.count, 1
+  end
 
 end

@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  resources :subreddits, only: [:index, :new, :create, :show, :edit, :update] do
-    resources :posts, only: [:new, :create, :edit, :update]
+
+  # resources :users, only: [] do
+  #   resources :subreddits, only[]
+  # end
+  resources :users
+  resources :subreddits, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :posts, only: [:new, :create, :edit, :update, :destroy]
   end
 
   resources :posts, only: [:show] do
-    resources :comments, only: [:new, :create, :edit, :update]
+    resources :comments, only: [:new, :create, :edit, :update, :destroy]
   end
 
 
