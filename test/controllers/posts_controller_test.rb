@@ -15,7 +15,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference('Post.count') do
-      post subreddit_posts_url @subreddit, params: { post: { title: 'created', body: 'created', subreddit: @subreddit } }
+      post subreddit_posts_url @subreddit, params: { post: { title: 'created', body: 'created', subreddit: @subreddit, user_id: @user } }
     end
 
     # take user to 'index' of subreddits after creating one
