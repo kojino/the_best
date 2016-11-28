@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
     <h1 class="five columns">Subreddits</h1>
+    <% if current_user %>
     <%= link_to "Create a subreddit", new_subreddit_path, :class => 'button button-primary' %>
+    <% end %>
   </div>
 
   <!-- <div class="row">
@@ -13,8 +15,12 @@
   <% @subreddits.each do |subreddit| %>
   <div class="row">
     <h3 class="five columns"><%= link_to subreddit.title, subreddit %></h3>
+
+    <% if current_user %>
     <%= link_to "Edit subreddit", edit_subreddit_path(subreddit), :class => 'button' %>
     <p><%= link_to "Destory subreddit", subreddit_path(subreddit), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button' %></p>
+    <% end %>
+
     <br>
   </div>
   <% end %>

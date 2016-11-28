@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_action :authorize, only: [:show]
+
   def show
     @post = Post.find(params[:id])
   end
@@ -12,6 +14,7 @@ class PostsController < ApplicationController
   def create
     @subreddit = Subreddit.find(params[:subreddit_id])
     @post = @subreddit.posts.new(post_params)
+    @post.user_id = current_user
     @post.save
     flash[:success] = "Post created"
     redirect_to subreddit_path(@subreddit)

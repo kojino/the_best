@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_action :authorize, only: [:show]
+
   def new
     @post = Post.find(params[:post_id])
     @comment = Comment.new

@@ -1,5 +1,7 @@
 class SubredditsController < ApplicationController
 
+  before_action :authorize, only: [:index, :show]
+
   def index
     @subreddits = Subreddit.all
   end
@@ -9,11 +11,11 @@ class SubredditsController < ApplicationController
   end
 
   def new
-    @subreddit = Subreddit.new
+    @subreddit = current_user.subreddits.build
   end
 
   def create
-    @subreddit = Subreddit.new(subreddit_params)
+    @subreddit = current_user.subreddits.build(subreddit_params)
     @subreddit.save
     flash[:success] = "Subreddit created"
     redirect_to subreddits_path
