@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :authorize, only: [:show]
+  before_action :authorize, except: [:show]
 
   def show
     @post = Post.find(params[:id])
@@ -13,11 +13,15 @@ class PostsController < ApplicationController
 
   def create
     @subreddit = Subreddit.find(params[:subreddit_id])
-    @post = @subreddit.posts.new(post_params)
-    @post.user_id = current_user
-    @post.save
-    flash[:success] = "Post created"
-    redirect_to subreddit_path(@subreddit)
+    @post = @subreddit.posts.build(post_params)
+    @post.user_id = session[:user_id]
+    if @post.save
+      flash[:success] = "Post created"
+      redirect_to subreddit_path(@subreddit)
+    else
+      flash[:error] = "Post could not be created"
+      redirect_to :back
+    end
   end
 
   def edit

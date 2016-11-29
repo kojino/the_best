@@ -1,6 +1,6 @@
 class SubredditsController < ApplicationController
 
-  before_action :authorize, only: [:index, :show]
+  before_action :authorize, except: [:index, :show]
 
   def index
     @subreddits = Subreddit.all

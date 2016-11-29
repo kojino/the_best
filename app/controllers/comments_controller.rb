@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :authorize, only: [:show]
+  before_action :authorize, except: [:show]
 
   def new
     @post = Post.find(params[:post_id])
@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(comment_params)
+    @comment = @post.comments.build(comment_params)
+    @comment.user_id = session[:user_id]
     if @comment.save
       flash[:success] = "Comment created"
       redirect_to post_path(@post)

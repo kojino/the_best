@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize
+  before_action :authorize, except: [:new, :create]
 
   def new
     @user = User.new
@@ -10,9 +10,10 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path
+      flash[:error] = "Successful Login."
     else
-      flash[:error]
       redirect_to :back
+      flash[:error] = "Could not sign up."
     end
   end
 

@@ -1,4 +1,11 @@
 <div class="container">
+  <h3><%= current_user ? current_user.username : "Not logged in."%></h3>
+  <% if !current_user %>
+  <%= link_to "Log In", new_session_path, :class => 'button button-primary' %>
+  <% else %>
+  <%= link_to "Log Out", session_path(current_user.id), method: :delete, data: {confirm: 'Are you sure?'}, remote: true, :class => 'button' %>
+  <% end %>
+
   <div class="row">
     <h1 class="five columns">Subreddits</h1>
     <% if current_user %>
